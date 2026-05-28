@@ -12,9 +12,11 @@ public class Game {
 	Enemy enemy;
 	
 	Scanner scanner;
+	Random rand;
 	
 	public Game() {
 		this.scanner = new Scanner(System.in);
+		this.rand = new Random();
 		
 		this.player = new Player("",100,100,10);
 	}
@@ -24,11 +26,10 @@ public class Game {
 		String name = this.scanner.nextLine();
 		this.player.setName(name);
 		
-		Random rand = new Random();
 		while(this.player.getHp() > 0) {			
 			int action = selectAction();			
 			if(action == ACTION_GO) {
-				int num = rand.nextInt(2);
+				int num = this.rand.nextInt(2);
 				if(num == 0) {
 					System.out.println("特に何もない先に進もう");
 					continue;
@@ -48,7 +49,8 @@ public class Game {
 		int action = -1;
 		createEnemy();
 		while(action != ACTION_ESCAPE) {
-			System.out.println(this.player.getName() + "HP: "+this.player.getHp());
+			System.out.println(this.player.getName() + " HP: "+this.player.getHp());
+			System.out.println(this.enemy.getName() + " HP: "+this.enemy.getHp());
 			action = selectBattleAction();
 			if(action == ACTION_ATTACK) {
 				player.attack(enemy);
@@ -61,7 +63,12 @@ public class Game {
 				}
 			}
 			else if(action == ACTION_STAND) {
-				
+				int num = this.rand.nextInt(2);
+				if(num == 0) {					
+					enemy.attack(player);
+				}else if(num == 1) {
+					System.out.println(enemy.getName()+"は様子を見ている！");
+				}
 			}
 			else if(action == ACTION_ESCAPE) {
 				break;
@@ -72,8 +79,6 @@ public class Game {
 	
 	public void createEnemy() {
 		this.enemy = new Enemy("スライム",10,10,2,100);
-		
-		System.out.println(this.enemy.getName() + "HP: "+this.enemy.getHp());
 	}
 	
 	private int selectAction() {
