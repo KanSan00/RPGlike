@@ -1,14 +1,16 @@
 package com.arakan.rpglike.model;
 
 public class Player extends Character{
-	int level;
-	int exp;
+	private int level = 1;
+	private int exp = 0;
+
+	public Player(String name, int hp, int defense, int attackPower) {
+		super(name, hp, defense, attackPower);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 	
 	public int getLevel() {
 		return level;
-	}
-	public void setLevel(int level) {
-		this.level = level;
 	}
 	public int getExp() {
 		return exp;
@@ -17,8 +19,8 @@ public class Player extends Character{
 		this.exp = exp;
 	}
 	
-	public int attack() {
-		return attackPower;
+	public void levelUp() {
+		
 	}
 	
 	public void heal() {
