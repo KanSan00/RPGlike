@@ -3,6 +3,10 @@ package com.arakan.rpglike.model;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.arakan.rpglike.character.enemy.Enemy;
+import com.arakan.rpglike.character.enemy.EnemyFactory;
+import com.arakan.rpglike.character.player.Player;
+
 public class Game {
 	private static final int ACTION_GO = 1;
 	private static final int ACTION_ATTACK = 1;
@@ -13,11 +17,12 @@ public class Game {
 	
 	Scanner scanner;
 	Random rand;
+	EnemyFactory enemyFactory;
 	
 	public Game() {
 		this.scanner = new Scanner(System.in);
 		this.rand = new Random();
-		
+		this.enemyFactory = new EnemyFactory();
 		this.player = new Player("",100,100,10);
 	}
 	
@@ -49,8 +54,8 @@ public class Game {
 		int action = -1;
 		createEnemy();
 		while(action != ACTION_ESCAPE) {
-			System.out.println(this.player.getName() + " HP: "+this.player.getHp());
-			System.out.println(this.enemy.getName() + " HP: "+this.enemy.getHp());
+			System.out.println(this.player.getName()+" Lv."+player.getLevel()+ "\nHP: "+this.player.getHp());
+			System.out.println(this.enemy.getName() + "\nHP: "+this.enemy.getHp());
 			action = selectBattleAction();
 			if(action == ACTION_ATTACK) {
 				player.attack(enemy);
@@ -61,6 +66,7 @@ public class Game {
 					player.setExp(enemy.getExp());
 					break;
 				}
+				enemy.attack(player);
 			}
 			else if(action == ACTION_STAND) {
 				int num = this.rand.nextInt(2);
@@ -78,7 +84,7 @@ public class Game {
 	}
 	
 	public void createEnemy() {
-		this.enemy = new Enemy("スライム",10,10,2,100);
+		this.enemy = enemyFactory.createRandomEnemy();
 	}
 	
 	private int selectAction() {
