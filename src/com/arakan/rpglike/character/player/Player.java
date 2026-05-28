@@ -1,4 +1,6 @@
-package com.arakan.rpglike.model;
+package com.arakan.rpglike.character.player;
+
+import com.arakan.rpglike.character.Character;
 
 public class Player extends Character{
 	private int level = 1;
@@ -20,10 +22,6 @@ public class Player extends Character{
 	}
 	
 	public void levelUp() {
-		
-	}
-	
-	public void heal() {
 		
 	}
 }

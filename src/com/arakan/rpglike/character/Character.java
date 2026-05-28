@@ -1,4 +1,4 @@
-package com.arakan.rpglike.model;
+package com.arakan.rpglike.character;
 
 public class Character {
 	

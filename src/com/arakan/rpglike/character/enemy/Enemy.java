@@ -1,4 +1,6 @@
-package com.arakan.rpglike.model;
+package com.arakan.rpglike.character.enemy;
+
+import com.arakan.rpglike.character.Character;
 
 public class Enemy extends Character{
 
