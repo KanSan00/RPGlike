@@ -13,12 +13,4 @@ public class Enemy extends Character{
 	public int getExp() {
 		return exp;
 	}
-	
-	public void setExp(int exp) {
-		this.exp = exp;
-	}
-	
-	public void attack() {
-		
-	}
 }
