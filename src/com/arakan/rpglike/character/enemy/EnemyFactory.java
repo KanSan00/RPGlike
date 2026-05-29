@@ -22,8 +22,8 @@ public class EnemyFactory {
 		int total = 0;
 		for(EnemyType type: types) {
 			total += type.getRate();
-			if(total < num) {
-				switch(type) {
+			if(num < total) {
+			 switch(type) {
 				case SLIME: return new Slime();
 				case GOBLIN: return new Goblin();
 				case SKELETON: return new Skeleton();
