@@ -14,18 +14,25 @@ public class EnemyFactory {
 	}
 	
 	public Enemy createRandomEnemy() {
-
-		// Listの size() と get() を使ってランダムに1つ選択
-        EnemyType selectedType = types.get(rand.nextInt(types.size()));
-        
-        // 選ばれたEnumの型で判定する
-        switch (selectedType) {
-            case SLIME:
-                return new Slime();
-            case GOBLIN:
-                return new Goblin();
-            default:
-                return new Slime(); // フェイルセーフ（安全策）
-        }
+		int totalRate = 0;
+		for(EnemyType type: types) {
+			totalRate += type.getRate();
+		}
+		int num = this.rand.nextInt(totalRate);
+		int total = 0;
+		for(EnemyType type: types) {
+			total += type.getRate();
+			if(total < num) {
+				switch(type) {
+				case SLIME: return new Slime();
+				case GOBLIN: return new Goblin();
+				case DRAGON: return new Dragon();
+				default: return new Slime();
+				}
+			}
+		}
+		
+		// 何かあったときは雑魚を返しておく
+		return new Slime();
     }
 }
