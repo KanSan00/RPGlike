@@ -4,7 +4,7 @@ public class Slime extends Enemy {
 
 	public Slime() {
 		// 名前, HP, 最大HP, 防御力, 攻撃力, 経験値 を親クラスに渡す
-        super("スライム", 10, 10, 1, 2, 100);
+        super("スライム", 15, 10, 1, 2, 100);
 	}
 
 }
