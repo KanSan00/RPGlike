@@ -23,11 +23,20 @@ public class Character {
 	public int getHp() {
 		return hp;
 	}
+	protected void setHp(int hp) {
+		this.hp = hp;
+	}
 	public int getMaxHp() {
 		return maxHp;
 	}
+	protected void setMaxHp(int maxHp) {
+		this.maxHp = maxHp;
+	}
 	public int getAttackPower() {
 		return attackPower;
+	}
+	protected void setAttackPower(int attackPower) {
+		this.attackPower = attackPower;
 	}
 	
 	// 攻撃

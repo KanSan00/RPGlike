@@ -62,8 +62,7 @@ public class Game {
 				
 				if(enemy.isDead()) {
 					System.out.println(enemy.getName()+"を倒した！");
-					System.out.println(player.getName()+"は"+enemy.getExp()+"EXPを獲得した！");
-					player.setExp(enemy.getExp());
+					player.gainExp(enemy.getExp());
 					break;
 				}
 				enemy.attack(player);
