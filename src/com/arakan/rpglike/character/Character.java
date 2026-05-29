@@ -77,6 +77,12 @@ public class Character {
         return Math.max(1, damage);
     }
 
+    // Character.java (もしくは Player.java) に追加
+    public void revive() {
+        // 現在のHPを最大HPまで全回復させる
+        this.hp = this.maxHp;
+    }
+    
     // 死亡判定
     public boolean isDead() {
         return hp <= 0;
