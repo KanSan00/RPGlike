@@ -26,6 +26,7 @@ public class EnemyFactory {
 				switch(type) {
 				case SLIME: return new Slime();
 				case GOBLIN: return new Goblin();
+				case SKELETON: return new Skeleton();
 				case DRAGON: return new Dragon();
 				default: return new Slime();
 				}
