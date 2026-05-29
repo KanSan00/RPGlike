@@ -55,15 +55,26 @@ public class Character {
         target.takeDamage(attackPower);
     }
 
-    // ダメージ処理
-    public void takeDamage(int damage) {
-        hp -= damage;
+ // ダメージ処理（引数の意味を「受ける攻撃力」に変更）
+    public void takeDamage(int incomingAttackPower) {
+    	// 1. 専用のメソッドで実際のダメージを計算する
+        int damage = calculateDamage(incomingAttackPower);
+        this.hp -= damage;
         System.out.println(name + " は "+ damage + " ダメージ受けた！");
-        // HPがマイナスにならないように
-        if (hp < 0) {
-            hp = 0;
+        
+        if (this.hp < 0) {
+            this.hp = 0;
         }
-        System.out.println(name + " のHP: " + hp);
+        System.out.println(name + " のHP: " + this.hp);
+    }
+    
+    // 「受ける側」が自分の防御力を使って計算する
+    protected int calculateDamage(int incomingAttackPower) {
+        // シンプルな減算式：攻撃力 - 防御力
+        int damage = incomingAttackPower - this.defense;
+        
+        // 防御力が高すぎてダメージが0やマイナス（回復）にならないよう、最低1ダメージを保証
+        return Math.max(1, damage);
     }
 
     // 死亡判定
