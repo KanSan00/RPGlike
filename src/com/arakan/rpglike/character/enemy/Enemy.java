@@ -6,8 +6,8 @@ public class Enemy extends Character{
 
 	int exp = 100;
 	
-	public Enemy(String name, int hp, int defense, int attackPower, int exp) {
-		super(name, hp, defense, attackPower);
+	public Enemy(String name, int hp, int maxHp, int defense, int attackPower, int exp) {
+		super(name, hp, maxHp, defense, attackPower);
 		
 		this.exp = exp;
 	}

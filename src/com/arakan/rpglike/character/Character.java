@@ -5,12 +5,15 @@ public class Character {
 	protected String name;
 	protected int hp = 100;
 	protected int maxHp = 100;
+	protected int defense = 1;
+
 	protected int attackPower = 10;
 	
-	public Character(String name, int hp, int maxHp, int attackPower) {
+	public Character(String name, int hp, int maxHp, int defense, int attackPower) {
 		this.name = name;
 		this.hp = hp;
 		this.maxHp = maxHp;
+		this.defense = defense;
 		this.attackPower = attackPower;
 	}
 	
@@ -31,6 +34,13 @@ public class Character {
 	}
 	protected void setMaxHp(int maxHp) {
 		this.maxHp = maxHp;
+	}
+	public int getDefense() {
+		return defense;
+	}
+	
+	protected void setDefense(int defense) {
+		this.defense = defense;
 	}
 	public int getAttackPower() {
 		return attackPower;

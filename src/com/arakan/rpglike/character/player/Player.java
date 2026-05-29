@@ -1,15 +1,28 @@
 package com.arakan.rpglike.character.player;
 
 import com.arakan.rpglike.character.Character;
+import com.arakan.rpglike.save.SaveData;
 
 public class Player extends Character{
 	private int level = 1;
 	private int exp = 0;
 	private int nextLevelExp = 0;
 
-	public Player(String name, int hp, int defense, int attackPower) {
-		super(name, hp, defense, attackPower);
+
+	public Player(String name, int hp, int maxHp, int defense, int attackPower) {
+		super(name, hp, maxHp,defense, attackPower);
 		this.nextLevelExp = calculateNextLevelExp();
+	}
+	
+	public void initialize(SaveData data){
+		this.name = data.getName();
+		this.level = data.getLevel();
+		this.hp = data.getHp();
+		this.maxHp = data.getMaxHp();
+		this.defense = data.getDefense();
+		this.exp = data.getExp();
+		this.nextLevelExp = data.getNextLevelExp();
+		this.attackPower = data.getAttackPower();
 	}
 	
 	public int getLevel() {
@@ -19,6 +32,10 @@ public class Player extends Character{
 	public int getExp() {
 		return exp;
 	}	
+
+	public int getNextLevelExp() {
+		return nextLevelExp;
+	}
 	
 	public void gainExp(int exp) {
 		this.exp += exp;
