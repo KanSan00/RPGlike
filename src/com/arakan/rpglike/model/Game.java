@@ -36,7 +36,26 @@ public class Game {
 			this.player.setName(name);
 		}
 		
-		while (this.player.getHp() > 0) {			
+		// while (true) に変更し、ゲームオーバー判定を内部で行う
+		while (true) {			
+					
+		// プレイヤー自身に「死んでいるか？」を問う
+			if (this.player.isDead()) {
+				if (promptForRevive()) {
+				// ｙなら：ステータスを引き継いでHP全回復で復活
+					this.player.revive();
+					System.out.println("不思議な光があなたを包み、復活した！");
+					continue; // ループの先頭に戻って冒険を続行
+				}
+				else {
+					// ｎなら：その時点のステータスでセーブして終了
+					System.out.println("力尽きてしまった...");
+					save();
+					break; // ループを抜けて終了
+				}
+			}
+			
+			// プレイヤーが生きていれば通常通りメインメニューを表示
 			MainMenu command = selectMainMenu();			
 			if (command == MainMenu.GO) {
 				handleExploration();
@@ -111,7 +130,11 @@ public class Game {
 			return true; // バトル終了
 		}
 		enemy.attack(player);
-		return player.isDead(); // プレイヤーが死んだらバトル終了
+		if(player.isDead()) {
+			System.out.println(player.getName()+"は"+enemy.getName()+"に敗北した！");
+			return true;
+		}
+		return player.isDead();// プレイヤーが死んだらバトル終了
 	}
 
 	private void executeStandAction() {
@@ -157,6 +180,22 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * 蘇生するかどうかの選択肢を提示するメソッド
+	 * @return yならtrue, nならfalse
+	 */
+	private boolean promptForRevive() {
+		System.out.println(player.getName()+"はやられてしまった！蘇生しますか？ (y/n)");
+		while (true) {
+			String input = this.scanner.nextLine().trim().toLowerCase();
+			if (input.equals("y")) {
+				return true;
+			} else if (input.equals("n")) {
+				return false;
+			}
+			System.out.println("y または n を入力してください。");
+		}
+	}
 	
 	
 	private MainMenu selectMainMenu() {
