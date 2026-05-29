@@ -24,7 +24,7 @@ public class SaveManager {
     	
     }
 
-	public static void load(Player player) {
+	public static Player load() {
 
 	    try {
 	        File dir = new File("save");
@@ -50,7 +50,9 @@ public class SaveManager {
 	        FileReader reader = new FileReader(file);
 	        SaveData data = gson.fromJson(reader, SaveData.class);
 	        reader.close();
+	        Player player = new Player();
 	        player.initialize(data);
+	        return player;
 	    } catch (IOException e) {
 	        System.out.println("ロードに失敗しました。");
 	        e.printStackTrace();

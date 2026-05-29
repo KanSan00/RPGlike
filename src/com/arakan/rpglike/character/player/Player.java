@@ -9,8 +9,8 @@ public class Player extends Character{
 	private int nextLevelExp = 0;
 
 
-	public Player(String name, int hp, int maxHp, int defense, int attackPower) {
-		super(name, hp, maxHp,defense, attackPower);
+	public Player() {
+		super("", 100, 100, 5, 10);
 		this.nextLevelExp = calculateNextLevelExp();
 	}
 	
