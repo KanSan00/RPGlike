@@ -14,6 +14,7 @@ public class Game {
 	private static final int ACTION_ESCAPE = 0;
 	Player player;
 	Enemy enemy;
+	Boolean isEscape = false;
 	
 	Scanner scanner;
 	Random rand;
@@ -53,7 +54,8 @@ public class Game {
 	public void battle() {
 		int action = -1;
 		createEnemy();
-		while(action != ACTION_ESCAPE) {
+		isEscape = false;
+		while(!isEscape) {
 			System.out.println(this.player.getName()+" Lv."+player.getLevel()+ "\nHP: "+this.player.getHp());
 			System.out.println(this.enemy.getName() + "\nHP: "+this.enemy.getHp());
 			action = selectBattleAction();
@@ -73,10 +75,20 @@ public class Game {
 					enemy.attack(player);
 				}else if(num == 1) {
 					System.out.println(enemy.getName()+"は様子を見ている！");
+					continue;
 				}
 			}
 			else if(action == ACTION_ESCAPE) {
-				break;
+				int num = this.rand.nextInt(2);
+				if(num == 0) {	
+					System.out.println("逃げられなかった...");
+					enemy.attack(player);
+					isEscape = false;
+				}else if(num == 1) {
+					System.out.println("逃げた...");
+					isEscape = true;
+					break;
+				}
 			}
 		}
 		
