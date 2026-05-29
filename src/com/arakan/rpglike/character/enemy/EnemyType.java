@@ -1,10 +1,10 @@
 package com.arakan.rpglike.character.enemy;
 
 public enum EnemyType {
-	SLIME(40),
-    GOBLIN(35),
-    SKELETON(24),
-	DRAGON(1);
+	SLIME(30),
+    GOBLIN(30),
+    SKELETON(30),
+	DRAGON(10);
     // 今後敵が増えたらここに追加するだけ
     
 	int rate;
