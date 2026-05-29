@@ -51,5 +51,13 @@ public class Player extends Character{
         System.out.println("最大HPが " + hpBonus + " 上がった！ (HPが全回復した)");
         System.out.println("攻撃力が " + attackBonus + " 上がった！");
 	}
+	
+	public String toString() {
+		String status = "名前: "+name +
+						"\nレベル: "+level+
+						"\nHP: "+hp+
+						"\n攻撃力: "+attackPower;
+		return status;
+	}
 
 }

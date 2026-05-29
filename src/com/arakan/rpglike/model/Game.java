@@ -9,7 +9,7 @@ import com.arakan.rpglike.character.player.Player;
 
 public class Game {
 	
-	private enum MainMenu{GO, QUIT}
+	private enum MainMenu{GO, STATUS, QUIT}
 	private enum BattleStartMenu{BATTLE, ESCAPE}
 	private enum BattleMenu{ATTACK, STAND, ESCAPE}
 	
@@ -36,7 +36,11 @@ public class Game {
 			MainMenu command = selectMainMenu();			
 			if (command == MainMenu.GO) {
 				handleExploration();
-			} else {
+			}
+			else if(command == MainMenu.STATUS) {
+				showStatus();
+			}
+			else {
 				System.out.println("冒険をやめた");
 				break;
 			}
@@ -56,6 +60,10 @@ public class Game {
 				System.out.println("逃げた...");
 			}
 		}
+	}
+	
+	private void showStatus() {
+		System.out.println(player);
 	}
 	
 	private void battle() {
@@ -147,10 +155,13 @@ public class Game {
 	
 	
 		private MainMenu selectMainMenu() {
-			String msg = String.format("[%d] 先に進む, [%d] 冒険をやめる", 1, 0);
-			int choice = promptForInput(msg, 1);
-			// １ならGO、0ならQUIT
-			return choice == 1 ? MainMenu.GO : MainMenu.QUIT;
+			String msg = String.format("[%d] 先に進む, [%d] ステータスを見る, [%d] 冒険をやめる", 1, 2, 0);
+			int choice = promptForInput(msg, 2);
+			switch (choice) {
+			case 1:  return MainMenu.GO;
+			case 2:  return MainMenu.STATUS;
+			default: return MainMenu.QUIT;
+		}
 		}
 		
 		private BattleStartMenu selectBattleStartMenu() {
