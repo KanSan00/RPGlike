@@ -39,8 +39,7 @@ public class Player extends Character{
 		
 		this.nextLevelExp = calculateNextLevelExp();
 		
-		// 4. ステータスを上昇させる（例：最大HP+15, 攻撃力+2）
-        // ※ 親クラス（Character）にsetMaxHpやsetAttackPowerがある前提
+		// ステータスを上昇させる（例：最大HP+15, 攻撃力+2）
         int hpBonus = 5;
         int attackBonus = 1;
         
